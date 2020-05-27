@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "329091624660",
+    "firebase_url": "https://astridchatapp.firebaseio.com",
+    "project_id": "astridchatapp",
+    "storage_bucket": "astridchatapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329091624660:android:f21b65f6d566cb92631541",
+        "android_client_info": {
+          "package_name": "com.jwoo.astridchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329091624660-gt9v4mblc8ten5avjks3fliiihjqne5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7aK0Oj3XNefW24WHAA5WvZbJYBI98BVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329091624660-gt9v4mblc8ten5avjks3fliiihjqne5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

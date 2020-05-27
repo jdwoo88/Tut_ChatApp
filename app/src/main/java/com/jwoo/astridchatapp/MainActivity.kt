@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginScreen::class.java))
         }
 
-        btnCreateAccount.setOnClickListener {
+        btnMainCreateAccount.setOnClickListener {
             startActivity(Intent(this, CreateAccount::class.java))
         }
     }

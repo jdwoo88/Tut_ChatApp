@@ -1,5 +1,6 @@
-package com.jwoo.astridchatapp
+package com.jwoo.astridchatapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,6 +11,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.jwoo.astridchatapp.R
 import kotlinx.android.synthetic.main.activity_create_account.*
 
 class CreateAccount : AppCompatActivity() {
@@ -32,7 +34,6 @@ class CreateAccount : AppCompatActivity() {
                 createAccount(emailAddress, password, displayName)
             }
             else {
-                Toast.makeText(this, "Please fill out all fields.", Toast.LENGTH_SHORT).show()
                 log("AstridChatApp-CreateUser", "Please fill out all fields.")
             }
         }
@@ -52,15 +53,19 @@ class CreateAccount : AppCompatActivity() {
 
                         var userObject: HashMap<String, String> = HashMap<String, String>()
                         userObject.put("displayName", displayName)
-                        userObject.put("status", "-nothing-")
-                        userObject.put("image", "-nothing-")
-                        userObject.put("thum_image", "-nothing-")
+                        userObject.put("status", "")
+                        userObject.put("image", "")
+                        userObject.put("thumbnail_image", "")
                         
                         mDatabase!!.setValue(userObject)
                             .addOnCompleteListener{
                                 task: Task<Void> ->
                                 if (task.isSuccessful) {
-                                    log("AstridChatApp-CreateUser", "Account has been created. - $userId")
+                                    log("AstridChatApp-CreateUser", "Account has been created. - $userId", false)
+
+                                    var dashboardIntent = Intent(this, Dashboard::class.java)
+                                    dashboardIntent.putExtra("display_name", displayName)
+                                    startActivity(dashboardIntent)
                                 }
                                 else {
                                     log("AstridChatApp-CreateUser", "FirebaseDatabase - Failed to create user account.")
@@ -73,8 +78,11 @@ class CreateAccount : AppCompatActivity() {
             }
     }
 
-    fun log (tag:String, msg:String){
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    fun log (tag:String, msg:String, showToast: Boolean = true){
+        if (showToast){
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        }
+
         Log.d(tag, msg)
     }
 }

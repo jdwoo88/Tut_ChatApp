@@ -12,9 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CreateAccount"></activity>
-        <activity android:name=".LoginScreen" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.SettingsActivity"></activity>
+        <activity android:name=".activities.Dashboard" />
+        <activity
+            android:name=".activities.CreateAccount"
+            android:noHistory="true" />
+        <activity
+            android:name=".activities.LoginScreen"
+            android:noHistory="true" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

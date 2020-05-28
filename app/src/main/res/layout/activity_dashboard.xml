@@ -25,7 +25,8 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpDashboard"
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:background="#F4F9FB" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

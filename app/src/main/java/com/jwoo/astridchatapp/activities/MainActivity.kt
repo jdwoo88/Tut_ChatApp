@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.jwoo.astridchatapp.R
+import com.jwoo.astridchatapp.utilities.SharedFunctions
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                     dashboardIntent.putExtra("display_name", emailAddress)
                     startActivity(dashboardIntent)
 
-                    log("AstridChatApp-MainActivity", "Auto login complete. - $emailAddress", false)
+                    SharedFunctions().Log(this,"AstridChatApp-MainActivity", "Auto login complete. - $emailAddress", false)
                 }
         }
 
@@ -53,13 +54,5 @@ class MainActivity : AppCompatActivity() {
         if (mAuthListener != null){
             mAuth!!.removeAuthStateListener(mAuthListener!!)
         }
-    }
-
-    fun log (tag:String, msg:String, showToast: Boolean = true){
-        if (showToast){
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-        }
-
-        Log.d(tag, msg)
     }
 }

@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.jwoo.astridchatapp.R
+import com.jwoo.astridchatapp.utilities.SharedFunctions
 import kotlinx.android.synthetic.main.activity_login_screen.*
 
 class LoginScreen : AppCompatActivity() {
@@ -30,7 +31,7 @@ class LoginScreen : AppCompatActivity() {
                 loginUser(emailAddress, password)
             }
             else {
-                log("AstridChatApp-LoginUser", "Please fill out all fields.")
+                SharedFunctions().Log(this,"AstridChatApp-LoginUser", "Please fill out all fields.")
             }
         }
     }
@@ -40,23 +41,15 @@ class LoginScreen : AppCompatActivity() {
             .addOnCompleteListener{
                 task: Task<AuthResult> ->
                     if (task.isSuccessful){
-                        log("AstridChatApp-LoginUser", "Login successful. - $emailAddress", false)
+                        SharedFunctions().Log(this,"AstridChatApp-LoginUser", "Login successful. - $emailAddress", false)
 
                         var dashboardIntent = Intent(this, Dashboard::class.java)
                         dashboardIntent.putExtra("display_name", emailAddress)
                         startActivity(dashboardIntent)
                     }
                     else {
-                        log("AstridChatApp-LoginUser", "Failed to login.")
+                        SharedFunctions().Log(this,"AstridChatApp-LoginUser", "Failed to login.")
                     }
             }
-    }
-
-    fun log (tag:String, msg:String, showToast: Boolean = true){
-        if (showToast){
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-        }
-
-        Log.d(tag, msg)
     }
 }

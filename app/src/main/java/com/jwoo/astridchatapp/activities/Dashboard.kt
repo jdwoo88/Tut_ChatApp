@@ -41,7 +41,6 @@ class Dashboard : AppCompatActivity() {
                 FirebaseAuth.getInstance().signOut()
 
                 startActivity(Intent(this, MainActivity::class.java))
-                finish()
             }
             else if (item.itemId == R.id.menuSetting) {
                 startActivity(Intent(this, SettingsActivity::class.java))

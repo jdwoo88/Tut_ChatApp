@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.jwoo.astridchatapp.R
+import com.jwoo.astridchatapp.utilities.SharedFunctions
 import kotlinx.android.synthetic.main.activity_create_account.*
 
 class CreateAccount : AppCompatActivity() {
@@ -34,7 +35,7 @@ class CreateAccount : AppCompatActivity() {
                 createAccount(emailAddress, password, displayName)
             }
             else {
-                log("AstridChatApp-CreateUser", "Please fill out all fields.")
+                SharedFunctions().Log(this,"AstridChatApp-CreateUser", "Please fill out all fields.")
             }
         }
     }
@@ -61,28 +62,20 @@ class CreateAccount : AppCompatActivity() {
                             .addOnCompleteListener{
                                 task: Task<Void> ->
                                 if (task.isSuccessful) {
-                                    log("AstridChatApp-CreateUser", "Account has been created. - $userId", false)
+                                    SharedFunctions().Log(this, "AstridChatApp-CreateUser", "Account has been created. - $userId", false)
 
                                     var dashboardIntent = Intent(this, Dashboard::class.java)
                                     dashboardIntent.putExtra("display_name", displayName)
                                     startActivity(dashboardIntent)
                                 }
                                 else {
-                                    log("AstridChatApp-CreateUser", "FirebaseDatabase - Failed to create user account.")
+                                    SharedFunctions().Log(this,"AstridChatApp-CreateUser", "FirebaseDatabase - Failed to create user account.")
                                 }
                             }
                     }
                     else {
-                        log("AstridChatApp-CreateUser", "FirebaseAuth - Failed to create user account.")
+                        SharedFunctions().Log(this,"AstridChatApp-CreateUser", "FirebaseAuth - Failed to create user account.")
                     }
             }
-    }
-
-    fun log (tag:String, msg:String, showToast: Boolean = true){
-        if (showToast){
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-        }
-
-        Log.d(tag, msg)
     }
 }

@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.SendMessageActivity"></activity>
+        <activity
+            android:name=".activities.SendMessageActivity"
+            android:parentActivityName=".activities.Dashboard" />
         <activity
             android:name=".activities.ProfileActivity"
             android:parentActivityName=".activities.Dashboard" />

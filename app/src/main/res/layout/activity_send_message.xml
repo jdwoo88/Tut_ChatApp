@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4F9FB"
     tools:context=".activities.SendMessageActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/linearLayoutSendMessage"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@color/grey_100">
+
+        <Button
+            android:id="@+id/btnAddSendMessage"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/ic_add_black_24dp" />
+
+        <Button
+            android:id="@+id/btnChatSendMessage"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="false"
+            android:layout_toRightOf="@+id/btnAddSendMessage"
+            android:background="@drawable/ic_send_black_24dp" />
+
+        <EditText
+            android:id="@+id/txtChatSendMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/btnChatSendMessage" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

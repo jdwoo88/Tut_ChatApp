@@ -75,9 +75,10 @@ class UsersAdapter(
                             }
                             1 -> {
                                 // Send Message
-                                var profileIntent = Intent(context, SendMessageActivity::class.java)
-                                profileIntent.putExtra("userId", userId)
-                                context.startActivity(profileIntent)
+                                var sendMessage = Intent(context, SendMessageActivity::class.java)
+                                sendMessage.putExtra("userId", userId)
+                                sendMessage.putExtra("displayName", username)
+                                context.startActivity(sendMessage)
 
                                 SharedFunctions().Log(
                                     context,

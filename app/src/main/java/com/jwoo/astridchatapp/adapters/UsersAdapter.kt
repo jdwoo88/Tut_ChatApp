@@ -78,6 +78,7 @@ class UsersAdapter(
                                 var sendMessage = Intent(context, SendMessageActivity::class.java)
                                 sendMessage.putExtra("userId", userId)
                                 sendMessage.putExtra("displayName", username)
+                                sendMessage.putExtra("thumbnail_image", user.thumbnail_image)
                                 context.startActivity(sendMessage)
 
                                 SharedFunctions().Log(

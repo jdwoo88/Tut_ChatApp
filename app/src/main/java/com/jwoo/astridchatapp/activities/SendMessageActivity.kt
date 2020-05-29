@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,14 +37,38 @@ class SendMessageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_send_message)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = "Chat"
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
+
+        var inflater2 = this.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        var actionBarView2 = inflater2.inflate(R.layout.custom_bar_image, null)
 
         var extras = intent.extras
         if (extras != null) {
             toUserId = extras.get("userId").toString()
             var toDisplayName = extras.get("displayName").toString()
+            var toImageThumbnail = extras.get("thumbnail_image").toString()
+
             mLinearLayoutManager = LinearLayoutManager(this)
             mLinearLayoutManager!!.stackFromEnd = true
+
+            var txtBUser = actionBarView2!!.findViewById<TextView>(R.id.txtBarUser)
+            var imgBUser = actionBarView2!!.findViewById<CircleImageView>(R.id.imgBarUser)
+
+            txtBUser!!.text = toDisplayName
+
+            if (!TextUtils.isEmpty(toImageThumbnail)) {
+                Picasso.with(this)
+                    .load(toImageThumbnail)
+                    .placeholder(R.drawable.default_avata)
+                    .error(R.drawable.default_avata)
+                    .into(imgBUser)
+            } else {
+                Picasso.with(this)
+                    .load(R.drawable.default_avata)
+                    .into(imgBUser)
+            }
+
+            supportActionBar!!.customView = actionBarView2
 
             mFirebaseUser = FirebaseAuth.getInstance().currentUser
             fromUserId = mFirebaseUser!!.uid

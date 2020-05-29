@@ -1,10 +1,8 @@
 package com.jwoo.astridchatapp.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.jwoo.astridchatapp.R
@@ -22,17 +20,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mAuth = FirebaseAuth.getInstance()
-        mAuthListener = FirebaseAuth.AuthStateListener {
-            firebaseAuth: FirebaseAuth ->
-                user = firebaseAuth.currentUser
-                if (user != null) {
-                    var dashboardIntent = Intent(this, Dashboard::class.java)
-                    var emailAddress = user!!.email
-                    dashboardIntent.putExtra("display_name", emailAddress)
-                    startActivity(dashboardIntent)
+        mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth: FirebaseAuth ->
+            user = firebaseAuth.currentUser
+            if (user != null) {
+                var dashboardIntent = Intent(this, Dashboard::class.java)
+                var emailAddress = user!!.email
+                dashboardIntent.putExtra("display_name", emailAddress)
+                startActivity(dashboardIntent)
 
-                    SharedFunctions().Log(this,"AstridChatApp-MainActivity", "Auto login complete. - $emailAddress", false)
-                }
+                SharedFunctions().Log(
+                    this,
+                    "AstridChatApp-MainActivity",
+                    "Auto login complete. - $emailAddress",
+                    false
+                )
+            }
         }
 
         btnLogin.setOnClickListener {
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        if (mAuthListener != null){
+        if (mAuthListener != null) {
             mAuth!!.removeAuthStateListener(mAuthListener!!)
         }
     }

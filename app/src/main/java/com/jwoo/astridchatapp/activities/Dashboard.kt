@@ -2,10 +2,10 @@ package com.jwoo.astridchatapp.activities
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.jwoo.astridchatapp.R
 import com.jwoo.astridchatapp.adapters.SectionpagerAdapter
@@ -36,13 +36,12 @@ class Dashboard : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
-        if (item != null){
+        if (item != null) {
             if (item.itemId == R.id.menuLogout) {
                 FirebaseAuth.getInstance().signOut()
 
                 startActivity(Intent(this, MainActivity::class.java))
-            }
-            else if (item.itemId == R.id.menuSetting) {
+            } else if (item.itemId == R.id.menuSetting) {
                 startActivity(Intent(this, SettingsActivity::class.java))
             }
         }

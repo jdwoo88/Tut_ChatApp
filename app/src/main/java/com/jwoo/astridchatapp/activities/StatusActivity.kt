@@ -1,10 +1,7 @@
 package com.jwoo.astridchatapp.activities
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -27,7 +24,7 @@ class StatusActivity : AppCompatActivity() {
 
         var extras = intent.extras
         var status = extras!!.getString("status")
-        if (status != null){
+        if (status != null) {
             txtStatusUpdate.setText(status)
         }
 
@@ -37,7 +34,7 @@ class StatusActivity : AppCompatActivity() {
 
     }
 
-    fun saveStatus(){
+    fun saveStatus() {
         mCurrentUser = FirebaseAuth.getInstance().currentUser
         var userId = mCurrentUser!!.uid
 
@@ -45,14 +42,18 @@ class StatusActivity : AppCompatActivity() {
             .child("Users")
             .child(userId)
 
-        var status =  txtStatusUpdate.text.toString()
+        var status = txtStatusUpdate.text.toString()
 
         mDatabase!!.child("status").setValue(status).addOnCompleteListener { task: Task<Void> ->
             if (task.isSuccessful) {
-                SharedFunctions().Log(this, "AstridChatApp-StatusActivity", "Update Successful.", false)
+                SharedFunctions().Log(
+                    this,
+                    "AstridChatApp-StatusActivity",
+                    "Update Successful.",
+                    false
+                )
                 finish()
-            }
-            else {
+            } else {
                 SharedFunctions().Log(this, "AstridChatApp-StatusActivity", "Update Failed.")
             }
         }
